@@ -170,7 +170,7 @@ def run_discord_bot():
         num1: int,
         weapon2: str,
     ):
-        query = f"Custom_kill query: target = {target}, weapon1 = {weapon1}, num1 = {str(num1)}, weapon2 = {weapon2}"
+        query = f"Custom_kill query: target = {target}, weapon1 = {weapon1}, num1 = {num1}, weapon2 = {weapon2}"
         await interaction.response.send_message(
             handle_response_inner(
                 weapon1, target, query, "custom_kill", num1, weapon2,
