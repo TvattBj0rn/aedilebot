@@ -1,9 +1,9 @@
 
-import parse
 from fuzzywuzzy import fuzz
-import utils
-import bot
 
+import bot
+import parse
+import utils
 
 # fuzzy stuff
 # If they return true, they need to return proper location/vehicle/structure name.

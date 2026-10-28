@@ -1,7 +1,8 @@
+import csv
 import json
 import os
-import csv
 from collections import defaultdict
+
 import utils
 
 

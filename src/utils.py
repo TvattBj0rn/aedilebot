@@ -1,7 +1,9 @@
 
-from functools import lru_cache
 import re
+from functools import lru_cache
+
 import inflect
+
 inflector = inflect.engine()
 
 debugging = False

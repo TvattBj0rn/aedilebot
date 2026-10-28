@@ -1,9 +1,10 @@
 import math
-import parse
-import utils
+
+import bot
 import fuzzy as fuzz
 import main
-import bot
+import parse
+import utils
 
 
 def calculate_hits_to_reach_health(health, damage):

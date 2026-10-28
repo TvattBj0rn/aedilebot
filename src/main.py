@@ -1,6 +1,6 @@
 # import discord
-import utils
 import bot
+import utils
 
 utils.debugging = True
 
