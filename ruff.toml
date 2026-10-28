@@ -3,8 +3,8 @@ target-version = "py312"
 [lint]
 select = [
     "E",
-#    "W", # Pycodestyle
-#    "F", # Pyflakes
+    "W", # Pycodestyle
+    "F", # Pyflakes
 #    "UP", # Pyupgrade
 #    "B", # Flake8-bugbear
 #    "SIM", # Flake8-simplify

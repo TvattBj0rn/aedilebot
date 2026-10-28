@@ -48,7 +48,7 @@ class TargetNotFoundError(EntityNotFoundError):
     def __init__(
         self,
         name,
-        message=f"The detected target is not found in my data set. Please try again.",
+        message="The detected target is not found in my data set. Please try again.",
     ):
         super().__init__(name, message)
 
@@ -57,7 +57,7 @@ class TargetOfTypeNotFoundError(EntityNotFoundError):
     def __init__(
         self,
         name,
-        message=f"The detected target for this operation is not found in my data set. Please try again.",
+        message="The detected target for this operation is not found in my data set. Please try again.",
     ):
         super().__init__(name, message)
 
@@ -66,7 +66,7 @@ class WeaponNotFoundError(EntityNotFoundError):
     def __init__(
         self,
         name,
-        message=f"The detected weapon is not found in my data set. Please try again.",
+        message="The detected weapon is not found in my data set. Please try again.",
     ):
         super().__init__(name, message)
 

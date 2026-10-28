@@ -18,7 +18,6 @@ def load_locations_from_csv(filename):
         reader = csv.reader(f)
         for row in reader:
             if len(row) >= 3:
-                hex_name = row[0].strip()
                 location_name = row[1].strip()
                 location_type = row[2].strip()
                 locations_dict[location_name] = location_type
@@ -149,7 +148,6 @@ def get_bunker_spec(string):
         "gen": "eng",
         "generator": "eng",
         "generater": "eng",
-        "howitzer": "hg",
         "arty": "hg",
         "artillery": "hg",
         "shelter": "shelter",
