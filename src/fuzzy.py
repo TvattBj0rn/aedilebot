@@ -25,8 +25,7 @@ def fuzzy_match_target_name(name, targets_dictionary = parse.targets_dictionary)
         if max_score < 65:
             if targets_dictionary != parse.targets_dictionary:
                 raise bot.TargetOfTypeNotFoundError(name)
-            else:
-                raise bot.TargetNotFoundError(name)
+            raise bot.TargetNotFoundError(name)
         if parse.check_if_location_name(name):
             tokens["location_name"] = name
         if len(good_score_list)>1:  #this is INSANELY inefficient and yet I can't find a proper solution to the bug this fixes
@@ -84,8 +83,7 @@ def fuzzy_match_any(name):
             return fuzzy_perfect_match_any(name)
     if max_score < 75:
         raise bot.EntityNotFoundError(name)
-    output = {"max_value":max_value,"type":type}
-    return output
+    return {"max_value":max_value,"type":type}
 
 def fuzzy_perfect_match_any(name):
     name = utils.normalize(name)
@@ -99,8 +97,7 @@ def fuzzy_perfect_match_any(name):
             type = parse.all[max_value]["ObjectType"]
     if max_score < 50:
         raise bot.EntityNotFoundError(name)
-    output = {"max_value":max_value,"type":type}
-    return output
+    return {"max_value":max_value,"type":type}
 
 def fuzzy_match_any_command(name):
     name = utils.normalize(name)

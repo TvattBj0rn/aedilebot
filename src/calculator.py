@@ -397,53 +397,52 @@ def statsheet_handler(entity_name):
             damage_type = entity["DamageType"]
             entity_type = entity["ObjectType"]
             return entity_type,name,damage,damage_type
-        else:
-            entity = parse.targets[fuzz.fuzzy_match_target_name(entity_name)[0]]
-            if entity["ObjectType"] == "Structures":
+        entity = parse.targets[fuzz.fuzzy_match_target_name(entity_name)[0]]
+        if entity["ObjectType"] == "Structures":
+            name = entity["Name"]
+            raw_hp = entity["Health"]
+            mitigation = entity["Mitigation Type"]
+            repair_cost = entity["RepairCost"]
+            decay_start = entity["DecayStartHours"]
+            decay_duration = entity["DecayDurationHours"]
+            entity_type = entity["ObjectType"]
+            return entity_type,name,raw_hp,mitigation,repair_cost,decay_start,decay_duration
+        if entity["ObjectType"] == "Vehicles" or entity["ObjectType"] == "Aircraft_Parts" or entity["ObjectType"] == "Emplacements" or entity[
+                "ObjectType"] == "Tripods":
+                entity_type = entity["ObjectType"]
                 name = entity["Name"]
                 raw_hp = entity["Health"]
                 mitigation = entity["Mitigation Type"]
-                repair_cost = entity["RepairCost"]
-                decay_start = entity["DecayStartHours"]
-                decay_duration = entity["DecayDurationHours"]
-                entity_type = entity["ObjectType"]
-                return entity_type,name,raw_hp,mitigation,repair_cost,decay_start,decay_duration
-            elif entity["ObjectType"] == "Vehicles" or entity["ObjectType"] == "Aircraft_Parts" or entity["ObjectType"] == "Emplacements" or entity[
-                    "ObjectType"] == "Tripods":
-                    entity_type = entity["ObjectType"]
-                    name = entity["Name"]
-                    raw_hp = entity["Health"]
-                    mitigation = entity["Mitigation Type"]
-                    try:
-                        min_pen = int(float(entity["Min Base Penetration Chance"]) * 100)
-                    except:
-                        min_pen = ""
-                    try:
-                        max_pen = int(float(entity["Max Base Penetration Chance"]) * 100)  # note to self: make decimals into fractions, make timer into hours
-                    except:
-                        max_pen = ""
-                    armour_hp = entity["Armour Health"]
-                    reload = entity["Reload time (pre-reload+reload) (magazine size) (artillery spread?)"]
-                    try:
-                        main = entity["Main Weapon (damage bonus)(max range, reach)(artillery range)"]
-                    except:
-                        main = ""
-                    try:
-                        main_disable = int(float(entity["Main Gun Disable Chance"]) * 100)
-                    except:
-                        main_disable = ""
-                    try:
-                        track_disable = int(float(entity["Tracks Disable Chance"]) * 100)
-                    except:
-                        track_disable = ""
-                    return entity_type,name,raw_hp,mitigation,min_pen,max_pen,armour_hp,reload,main,main_disable,track_disable
-            elif entity["ObjectType"] == "Multitier_structures":
-                entity_type = entity["ObjectType"]
-                name = entity["Name"]
-                raw_hp = entity["Health"]
-                bmat_cost = entity["Bmat cost"]
-                repair_cost = entity["RepairCost"]
-                return entity_type,name,raw_hp,bmat_cost,repair_cost
+                try:
+                    min_pen = int(float(entity["Min Base Penetration Chance"]) * 100)
+                except:
+                    min_pen = ""
+                try:
+                    max_pen = int(float(entity["Max Base Penetration Chance"]) * 100)  # note to self: make decimals into fractions, make timer into hours
+                except:
+                    max_pen = ""
+                armour_hp = entity["Armour Health"]
+                reload = entity["Reload time (pre-reload+reload) (magazine size) (artillery spread?)"]
+                try:
+                    main = entity["Main Weapon (damage bonus)(max range, reach)(artillery range)"]
+                except:
+                    main = ""
+                try:
+                    main_disable = int(float(entity["Main Gun Disable Chance"]) * 100)
+                except:
+                    main_disable = ""
+                try:
+                    track_disable = int(float(entity["Tracks Disable Chance"]) * 100)
+                except:
+                    track_disable = ""
+                return entity_type,name,raw_hp,mitigation,min_pen,max_pen,armour_hp,reload,main,main_disable,track_disable
+        if entity["ObjectType"] == "Multitier_structures":
+            entity_type = entity["ObjectType"]
+            name = entity["Name"]
+            raw_hp = entity["Health"]
+            bmat_cost = entity["Bmat cost"]
+            repair_cost = entity["RepairCost"]
+            return entity_type,name,raw_hp,bmat_cost,repair_cost
 
 
         return "I could not process a request because the entity is not a valid weapon, structure or vehicle."

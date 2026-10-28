@@ -605,7 +605,7 @@ def handle_bunker_kill_command(
     return calculator.command_bunker_kill_handler(weapon, bunker_spec)
 
 
-def handle_response(message_) -> str:
+def handle_response(message_: str) -> str:
     p_message = message_.lower()
 
     token_pair = re.findall(
@@ -636,3 +636,4 @@ def handle_response(message_) -> str:
         return handle_response_inner(
             utils.move_string_to_rear(weapon), utils.move_string_to_rear(target), message_, operation="dehusk",
         )
+    return ""

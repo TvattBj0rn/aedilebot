@@ -13,7 +13,7 @@ select = [
 #    "ANN", # Types annotation
     "COM", # Commas handling
     "Q", # Quoting
-#    "RET", # Return
+    "RET", # Return
 #    "ERA", # Commented code
 #    "TRY", # Tryceratops (Exception related)
 #    "RUF", # Ruff specific rules

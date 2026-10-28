@@ -15,8 +15,7 @@ def clean_capitalize(str):
             result = elem.capitalize()
     if not result:
         return str
-    else:
-        return result
+    return result
 
 
 async def message_handler(message_, user_message):
