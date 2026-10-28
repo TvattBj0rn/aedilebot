@@ -103,8 +103,8 @@ def fuzzy_match_any_command(name):
     name = utils.normalize(name)
     good_score_list = []
     num_perfect = 0
-    for key,value in parse.all_dictionary.items():
-        score = fuzz.token_set_ratio(name,key)
+    for key in parse.all_dictionary:
+        score = fuzz.token_set_ratio(name, key)
         if score > 60:
             good_score_list.append(key)
             if score == 100:
@@ -115,8 +115,8 @@ def fuzzy_match_any_command(name):
 
 def fuzzy_perfect_match_any_command(name):
     good_score_list = []
-    for key,value in parse.all_dictionary.items():
-        score = fuzz.token_sort_ratio(name,key)
+    for key in parse.all_dictionary:
+        score = fuzz.token_sort_ratio(name, key)
         if score > 60:
             good_score_list.append(key)
     return good_score_list
@@ -125,8 +125,8 @@ def fuzzy_match_target_name_command(name, targets_dictionary = parse.targets_dic
         name = utils.normalize(name)
         good_score_list = []
         num_perfect = 0
-        for key, value in targets_dictionary.items():
-            score = fuzz.token_set_ratio(name,key)
+        for key in targets_dictionary:
+            score = fuzz.token_set_ratio(name, key)
             if score > 60:
                 good_score_list.append(key)
                 if score == 100:
@@ -137,8 +137,8 @@ def fuzzy_match_target_name_command(name, targets_dictionary = parse.targets_dic
 
 def fuzzy_perfect_match_target_name_command(name, targets_dictionary = parse.targets_dictionary):
     good_score_list = []
-    for key, value in targets_dictionary.items():
-        score = fuzz.token_sort_ratio(name,key)
+    for key in targets_dictionary:
+        score = fuzz.token_sort_ratio(name, key)
         if score > 60:
              good_score_list.append(key)
     return good_score_list
@@ -146,8 +146,8 @@ def fuzzy_perfect_match_target_name_command(name, targets_dictionary = parse.tar
 def fuzzy_match_weapon_name_command(name):
         name = utils.normalize(name)
         good_score_list = []
-        for key, value in parse.weapons_dictionary.items():
-            score = fuzz.token_set_ratio(name,key)
+        for key in parse.weapons_dictionary:
+            score = fuzz.token_set_ratio(name, key)
             if score > 60:
                  good_score_list.append(key)
         return good_score_list

@@ -6,7 +6,7 @@ select = [
     "W", # Pycodestyle
     "F", # Pyflakes
     "UP", # Pyupgrade
-#    "B", # Flake8-bugbear
+    "B", # Flake8-bugbear
 #    "SIM", # Flake8-simplify
     "I", # Isort
 #    "C4", # Comprehensions

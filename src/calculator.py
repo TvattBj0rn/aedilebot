@@ -177,7 +177,7 @@ class DamageCalculator:
         shelters = min(9,shelters)
         bonus = 0.15
         total = 0
-        for i in range(shelters):
+        for _ in range(shelters):
             total += bonus
             bonus /= 4
         return total
