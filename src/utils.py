@@ -1,7 +1,9 @@
-
-from functools import lru_cache
+import json
 import re
+from functools import lru_cache
+
 import inflect
+
 inflector = inflect.engine()
 
 debugging = False
@@ -29,7 +31,7 @@ def move_string_to_rear(string):
             if replacement_string in ["unemplaced","unentrenched"]:
                 return string.replace(replacement_string, "")
             if replacement_string in ["emplaced","entrenched"]:
-                return string.replace(replacement_string, "") + " " + str("emplaced")
+                return string.replace(replacement_string, "") + " " + "emplaced"
             if replacement_string in ["t1","t2","t3"]:
                 return string.replace(replacement_string, "") + " " + str(replacement_string)
     return string
@@ -49,3 +51,7 @@ def normalize(text: str) -> str:
 def singularize(word: str) -> str:
     result = inflector.singular_noun(word)
     return result if result else word
+
+def load_json_to_dict(filename):
+    with open(filename, encoding="utf-8") as f:
+        return json.load(f)

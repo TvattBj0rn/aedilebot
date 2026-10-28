@@ -1,6 +1,1 @@
-import json
-
-def load_json_to_dict(filename):
-    with open(filename) as f:
-        dict = json.load(f)
-        return dict
+from src.utils import load_json_to_dict  #noqa: F401

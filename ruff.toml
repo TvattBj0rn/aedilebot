@@ -1,0 +1,35 @@
+target-version = "py312"
+
+[lint]
+select = [
+    "E",
+    "W", # Pycodestyle
+    "F", # Pyflakes
+    "UP", # Pyupgrade
+    "B", # Flake8-bugbear
+    "SIM", # Flake8-simplify
+    "I", # Isort
+    "C4", # Comprehensions
+#    "ANN", # Types annotation
+    "COM", # Commas handling
+    "Q", # Quoting
+    "RET", # Return
+    "RUF", # Ruff specific rules
+    "N", # Pep-8 naming conventions
+    "PERF", # Performances
+]
+ignore = [
+    "E501", # Line-too-long
+    "E722", # Bare except
+#    "ANN204", # Missing-return-type-special-method
+#    "ANN002", # Args typing
+#    "ANN003", # Kwargs typing
+]
+
+[lint.flake8-quotes]
+inline-quotes = "double"
+multiline-quotes = "double"
+
+[format]
+indent-style="space"
+quote-style="single"
