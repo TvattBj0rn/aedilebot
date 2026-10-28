@@ -368,7 +368,7 @@ def general_bunker_kill_handler(weapon_fuzzy_name, target_fuzzy_name):
 
     target_name = "meta"
     args["bunker_spec"] = parse.get_bunker_spec(target_fuzzy_name)
-    if args["bunker_spec"] == None:
+    if args["bunker_spec"] is None:
         raise bot.BunkerSpecParseError(target_fuzzy_name)
 
     return DamageCalculator(weapon_name, target_name, args).get_kill_calculation()
