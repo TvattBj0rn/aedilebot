@@ -22,24 +22,22 @@ def csv_to_json(csvFilePath, jsonFilePath):
 
 
 def json_to_js(jsonFilePath, jsFilePath, object_name):
-
-    with open(jsonFilePath, encoding="utf-8") as jsonf:
-        with open(jsFilePath, "w", encoding="utf-8") as jsf:
-            jsf.write(f"export const {object_name} = ")
-            for row in jsonf.readlines():
-                final = ""
-                if ":" in row:
-                    splited = row.split(":")
-                    without = splited[0]
-                    if "(" in without:
-                        without = without.split("(")[0] + '"'
-                    without = without.replace(" ", "")
-                    if (without == '"Name"'):
-                        jsf.write(f'"ObjectType":"{object_name}",\n')
-                    final = ":".join([without] + splited[1:])
-                else:
-                    final = row
-                jsf.write(final)
+    with open(jsonFilePath, encoding="utf-8") as jsonf, open(jsFilePath, "w", encoding="utf-8") as jsf:
+        jsf.write(f"export const {object_name} = ")
+        for row in jsonf.readlines():
+            final = ""
+            if ":" in row:
+                splited = row.split(":")
+                without = splited[0]
+                if "(" in without:
+                    without = without.split("(")[0] + '"'
+                without = without.replace(" ", "")
+                if without == '"Name"':
+                    jsf.write(f'"ObjectType":"{object_name}",\n')
+                final = ":".join([without] + splited[1:])
+            else:
+                final = row
+            jsf.write(final)
 
 #MAIN
 

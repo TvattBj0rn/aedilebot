@@ -7,7 +7,7 @@ select = [
     "F", # Pyflakes
     "UP", # Pyupgrade
     "B", # Flake8-bugbear
-#    "SIM", # Flake8-simplify
+    "SIM", # Flake8-simplify
     "I", # Isort
 #    "C4", # Comprehensions
 #    "ANN", # Types annotation

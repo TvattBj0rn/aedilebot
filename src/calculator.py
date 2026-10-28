@@ -54,9 +54,9 @@ class DamageCalculator:
                 # set health and mitigation
                 if "red" not in args["bunker_spec"] or "green" not in args["bunker_spec"] or args["bunker_spec"]["red"] == -1 or args["bunker_spec"]["green"] == -1:
                     # add estimates if red or green dots are not specified
-                    if "red" in args["bunker_spec"] and not args["bunker_spec"]["red"] == -1:
-                        args["bunker_spec"]["green"] = (args["bunker_spec"]["size"]*4 - args["bunker_spec"]["red"]) // 2
-                    elif "green" in args["bunker_spec"] and not args["bunker_spec"]["green"] == -1:
+                    if "red" in args["bunker_spec"] and args["bunker_spec"]["red"] != -1:
+                        args["bunker_spec"]["green"] = (args["bunker_spec"]["size"] * 4 - args["bunker_spec"]["red"]) // 2
+                    elif "green" in args["bunker_spec"] and args["bunker_spec"]["green"] != -1:
                         args["bunker_spec"]["red"] = args["bunker_spec"]["size"]*4 - (args["bunker_spec"]["green"] * 2)
                     else:
                         args["bunker_spec"] |= self.estimate_red_green(args["bunker_spec"]["size"])
@@ -152,10 +152,7 @@ class DamageCalculator:
 
     def calculate_damage(self, mitigation_type=None):
         if mitigation_type is None:
-            if self.mitigation_type:
-                mitigation_type = self.mitigation_type
-            else:
-                mitigation_type = self.target["Mitigation Type"]
+            mitigation_type = self.mitigation_type if self.mitigation_type else self.target["Mitigation Type"]
         mitigation_value = self.damage_type[mitigation_type]
         # Here later we can do entrenchment bonus or etc
         real_damage = float(self.damage_value * float(1 - float(mitigation_value)))

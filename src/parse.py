@@ -57,11 +57,10 @@ def get_all_names(dictionary, field_name="Additional Names"):
             name = utils.normalize(utils.move_string_to_rear(name))
             if name == "":
                 continue
-            if name in names_dictionary:
+            if name in names_dictionary and value["ObjectType"] == "Weapons":
                 # raise RuntimeError(f"Name {name} repeats itself in {names_dictionary[name]} and {key}")
                 # prioritize targets over weapon
-                if value["ObjectType"] == "Weapons":
-                    continue
+                continue
             names_dictionary[name] = key
     return names_dictionary
 
@@ -200,11 +199,10 @@ def get_bunker_spec(string):
     mod_count = 0
 
     for i, word in enumerate(words):
-        if word not in mod_words:
+        if word not in mod_words and word[-1] == "s" and word[:-1] in mod_words:
             # catch mod word in multiple form (howis, ATGs)
-            if word[-1] == "s" and word[:-1] in mod_words:
-                word = word[:-1]
-        if word in mod_words:
+            word = word[:-1]
+        if word in mod_words and i - 1 >= 0:
             # if word == "bunker" and i + 1 < len(words) and words[i + 1] in mod_words:
             #     # catch phrases like "bunker ramp"
             #     word = words[i + 1]
@@ -212,15 +210,14 @@ def get_bunker_spec(string):
             # if (word == "arty" or word == "artillery") and i + 1 < len(words) and words[i + 1] == "shelter":
             #     # catch phrases like "arty shelter"
             #     word = "shelter"
-            if i - 1 >= 0:
-                if words[i - 1].isdigit():
-                    args[mod_words[word]] += int(words[i - 1])
-                    if word != "green" and word != "red":
-                        mod_count += int(words[i - 1])
-                else:
-                    args[mod_words[word]] += 1
-                    if word != "green" and word != "red":
-                        mod_count += 1
+            if words[i - 1].isdigit():
+                args[mod_words[word]] += int(words[i - 1])
+                if word != "green" and word != "red":
+                    mod_count += int(words[i - 1])
+            else:
+                args[mod_words[word]] += 1
+                if word != "green" and word != "red":
+                    mod_count += 1
     if mod_count > args["size"]:
         return None
     return args
