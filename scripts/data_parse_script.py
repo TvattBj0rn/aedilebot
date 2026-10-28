@@ -3,29 +3,17 @@ import json
 
 file_names = ["Damage", "Vehicles_Tripods_Emplacements", "Weapons", "Structures", "Multitier_Structures"]
 
-def csv_to_json(csvFilePath, jsonFilePath):
-    jsonArray = []
-
-    # read csv file
-    with open(csvFilePath, encoding="utf-8") as csvf:
-        csvReader = csv.DictReader(csvf)
-
-        # convert each csv row into python dict
-        for row in csvReader:
-            # add this python dict to json array
-            jsonArray.append(row)
-
-    # convert python jsonArray to JSON String and write to file
-    with open(jsonFilePath, "w", encoding="utf-8") as jsonf:
-        jsonString = json.dumps(jsonArray, indent=4)
-        jsonf.write(jsonString)
+def csv_to_json(csv_file_path, json_file_path):
+    # Read both CSV and JSON files
+    with open(csv_file_path, encoding="utf-8") as csvf, open(json_file_path, "w", encoding="utf-8") as jsonf:
+        # convert python each csv row into python dict and then to JSON String and write to file
+        jsonf.write(json.dumps(list(csv.DictReader(csvf)), indent=4))
 
 
-def json_to_js(jsonFilePath, jsFilePath, object_name):
-    with open(jsonFilePath, encoding="utf-8") as jsonf, open(jsFilePath, "w", encoding="utf-8") as jsf:
+def json_to_js(json_file_path, js_file_path, object_name):
+    with open(json_file_path, encoding="utf-8") as jsonf, open(js_file_path, "w", encoding="utf-8") as jsf:
         jsf.write(f"export const {object_name} = ")
         for row in jsonf.readlines():
-            final = ""
             if ":" in row:
                 splited = row.split(":")
                 without = splited[0]
@@ -40,7 +28,6 @@ def json_to_js(jsonFilePath, jsFilePath, object_name):
             jsf.write(final)
 
 #MAIN
-
 for file_name in file_names:
     csv_file, json_file, js_file = file_name + ".csv", file_name + ".json", file_name + ".js"
     csv_to_json(csv_file, json_file)

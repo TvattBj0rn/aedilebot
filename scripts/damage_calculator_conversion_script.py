@@ -6,24 +6,20 @@ weapon_names = ["Weapons"]
 target_names = ["Vehicles", "Emplacements", "Tripods", "Structures", "Multitier_structures"]
 
 
-def csv_to_dictionary(csvFilePath, type="Entity"):
-    jsonDictionary = {}
-    with open(csvFilePath, encoding="utf-8") as csvf:
-        csvReader = csv.DictReader(csvf)
-
-        for row in csvReader:
+def csv_to_dictionary(csv_file_path, default_type="Entity"):
+    json_dict = {}
+    with open(csv_file_path, encoding="utf-8") as csvf:
+        for row in csv.DictReader(csvf):
             # everything we want to do with data before we put it into jsonArray
-            row["ObjectType"] = type
-            jsonDictionary[row["Name"]] = row
-
-    return jsonDictionary
+            row["ObjectType"] = default_type
+            json_dict[row["Name"]] = row
+    return json_dict
 
 
 def dictionary_to_json(json_dictionary, json_file_path):
     # convert python jsonArray to JSON String and write to file
     with open(json_file_path, "w", encoding="utf-8") as jsonf:
-        jsonString = json.dumps(json_dictionary, indent=4)
-        jsonf.write(jsonString)
+        jsonf.write(json.dumps(json_dictionary, indent=4))
 
 
 

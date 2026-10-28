@@ -17,7 +17,7 @@ select = [
 #    "ERA", # Commented code
 #    "TRY", # Tryceratops (Exception related)
     "RUF", # Ruff specific rules
-#    "N", # Pep-8 naming conventions
+    "N", # Pep-8 naming conventions
 #    "PERF", # Performances
 ]
 ignore = [
