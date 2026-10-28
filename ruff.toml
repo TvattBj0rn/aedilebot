@@ -9,7 +9,6 @@ select = [
     "SIM", # Flake8-simplify
     "I", # Isort
     "C4", # Comprehensions
-    "T20", # Prints
     "ANN", # Types annotation
     "COM", # Commas handling
     "Q", # Quoting
@@ -20,8 +19,8 @@ select = [
     "N", # Pep-8 naming conventions
     "PERF", # Performances
 ]
-#ignore = [
-#    "E501", # Line-too-long
+ignore = [
+    "E501", # Line-too-long
 #    "ANN204", # Missing-return-type-special-method
 #    "ANN002", # Args typing
 #    "ANN003", # Kwargs typing
@@ -29,7 +28,7 @@ select = [
 #    "TRY400", # Exception instead of error
 #    "RUF012", # Mutable-class-default
 #    "W191", # Indentation contains tabs
-#]
+]
 
 [lint.flake8-quotes]
 inline-quotes = "double"

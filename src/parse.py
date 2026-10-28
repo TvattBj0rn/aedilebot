@@ -235,7 +235,7 @@ def get_bunker_spec(string):
 
 # Structure Json parser
 locations_dictionary = load_locations_from_csv(
-    os.path.join("data", "Locations.csv")
+    os.path.join("data", "Locations.csv"),
 )
 
 

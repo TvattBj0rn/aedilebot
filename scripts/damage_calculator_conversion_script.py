@@ -8,7 +8,7 @@ target_names = ["Vehicles", "Emplacements", "Tripods", "Structures", "Multitier_
 
 def csv_to_dictionary(csvFilePath, type="Entity"):
     jsonDictionary = {}
-    with open(csvFilePath, encoding='utf-8') as csvf:
+    with open(csvFilePath, encoding="utf-8") as csvf:
         csvReader = csv.DictReader(csvf)
 
         for row in csvReader:
@@ -21,7 +21,7 @@ def csv_to_dictionary(csvFilePath, type="Entity"):
 
 def dictionary_to_json(json_dictionary, json_file_path):
     # convert python jsonArray to JSON String and write to file
-    with open(json_file_path, 'w', encoding='utf-8') as jsonf:
+    with open(json_file_path, "w", encoding="utf-8") as jsonf:
         jsonString = json.dumps(json_dictionary, indent=4)
         jsonf.write(jsonString)
 

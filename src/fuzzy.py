@@ -1,10 +1,8 @@
 
 import parse
 from fuzzywuzzy import fuzz
-import main
 import utils
 import bot
-from fuzzywuzzy import process
 
 
 # fuzzy stuff

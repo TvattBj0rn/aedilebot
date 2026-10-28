@@ -1,8 +1,6 @@
 import discord
-from discord.ext import commands
 from discord import app_commands
 import main
-import dotenv
 import os
 from dotenv import load_dotenv
 import calculator
@@ -13,7 +11,6 @@ import fuzzy as fuzz
 import traceback
 import datetime
 import utils
-import string
 
 load_dotenv()
 DEPLOYMENT_TOKEN = os.getenv("DEPLOYMENT_TOKEN")
@@ -94,7 +91,7 @@ def run_discord_bot():
     intents = discord.Intents.default()
     intents.message_content = True
     client = main.commands.Bot(
-        command_prefix="!", intents=intents, proxy=HTTPS_PROXY
+        command_prefix="!", intents=intents, proxy=HTTPS_PROXY,
     )
 
     @client.event
@@ -123,7 +120,7 @@ def run_discord_bot():
             inline=False,
         )
         embed.set_thumbnail(
-            url="https://media.discordapp.net/attachments/884587111624368158/1077553561010982922/g839.png?width=570&height=498"
+            url="https://media.discordapp.net/attachments/884587111624368158/1077553561010982922/g839.png?width=570&height=498",
         )
         embed.add_field(
             name="/help",
@@ -175,8 +172,8 @@ def run_discord_bot():
         query = f"Custom_kill query: target = {target}, weapon1 = {weapon1}, num1 = {str(num1)}, weapon2 = {weapon2}"
         await interaction.response.send_message(
             handle_response_inner(
-                weapon1, target, query, "custom_kill", num1, weapon2
-            )
+                weapon1, target, query, "custom_kill", num1, weapon2,
+            ),
         )
 
     @client.tree.command(name="bunker_kill")
@@ -205,7 +202,7 @@ def run_discord_bot():
             app_commands.Choice(name="Tier 1", value=1),
             app_commands.Choice(name="Tier 2", value=2),
             app_commands.Choice(name="Tier 3", value=3),
-        ]
+        ],
     )
     async def bunker_kill(
         interaction: discord.Interaction,
@@ -248,7 +245,7 @@ def run_discord_bot():
                 fortress,
                 radar,
                 wet,
-            )
+            ),
         )
 
     @client.tree.command(name="statsheet")
@@ -256,7 +253,7 @@ def run_discord_bot():
         data = calculator.statsheet_handler(entity)
         embed = discord.Embed(title=data[1], color=0x992D22)
         embed.set_thumbnail(
-            url="https://media.discordapp.net/attachments/884587111624368158/1077553561010982922/g839.png?width=570&height=498"
+            url="https://media.discordapp.net/attachments/884587111624368158/1077553561010982922/g839.png?width=570&height=498",
         )
         embed.description = f"Statistics sheet for {data[1]}"
         # embed.add_field(name="Name", value=data[1], inline=False)
@@ -284,7 +281,7 @@ def run_discord_bot():
                     inline=True,
                 )
                 embed.add_field(
-                    name="Armour Health", value=data[6], inline=True
+                    name="Armour Health", value=data[6], inline=True,
                 )
             if data[7] != "":
                 embed.add_field(name="Reload", value=data[7], inline=True)
@@ -322,7 +319,7 @@ def run_discord_bot():
 
     @statsheet.autocomplete("entity")
     async def statsheet_autocompletion(
-        interaction: discord.Interaction, current: str
+        interaction: discord.Interaction, current: str,
     ) -> typing.List[app_commands.Choice[str]]:
         data = []
         usedlist = []
@@ -333,8 +330,8 @@ def run_discord_bot():
                     if possible_value not in usedlist:
                         data.append(
                             app_commands.Choice(
-                                name=possible_value, value=possible_value
-                            )
+                                name=possible_value, value=possible_value,
+                            ),
                         )
                         usedlist.append(possible_value)
                 elif (
@@ -343,7 +340,7 @@ def run_discord_bot():
                     value = fuzz.fuzzy_match_any(possible_value)["max_value"]
                     if value not in usedlist:
                         data.append(
-                            app_commands.Choice(name=value, value=value)
+                            app_commands.Choice(name=value, value=value),
                         )
                         usedlist.append(value)
         return data
@@ -352,28 +349,28 @@ def run_discord_bot():
     async def kill(interaction: discord.Interaction, target: str, weapon: str):
         query = f"kill query: target = {target}, weapon = {weapon}"
         await interaction.response.send_message(
-            handle_response_inner(weapon, target, query)
+            handle_response_inner(weapon, target, query),
         )
-    
+
     @client.tree.command(name="disable")
     async def disable(interaction: discord.Interaction, target: str, weapon: str):
         query = f"disable query: target = {target}, weapon = {weapon}"
         await interaction.response.send_message(
-            handle_response_inner(weapon, target, query, "disable")
+            handle_response_inner(weapon, target, query, "disable"),
         )
-    
+
     @client.tree.command(name="dehusk")
     async def dehusk(interaction: discord.Interaction, target: str, weapon: str):
         query = f"dehusk query: target = {target}, weapon = {weapon}"
         await interaction.response.send_message(
-            handle_response_inner(weapon, target, query, "dehusk")
+            handle_response_inner(weapon, target, query, "dehusk"),
         )
 
 
     @kill.autocomplete("target")
     @custom_kill.autocomplete("target")
     async def kill_autocompletion_target(
-        interaction: discord.Interaction, current: str
+        interaction: discord.Interaction, current: str,
     ) -> typing.List[app_commands.Choice[str]]:
         data = []
         usedlist = {}
@@ -389,8 +386,8 @@ def run_discord_bot():
                 if possible_value not in usedlist:
                     data.append(
                         app_commands.Choice(
-                            name=possible_value, value=possible_value
-                        )
+                            name=possible_value, value=possible_value,
+                        ),
                     )
                     usedlist[possible_value] = True
             else:
@@ -398,15 +395,15 @@ def run_discord_bot():
                     if possible_value in v:
                         if v[0] not in usedlist:
                             data.append(
-                                app_commands.Choice(name=v[0], value=v[0])
+                                app_commands.Choice(name=v[0], value=v[0]),
                             )
                             usedlist[v[0]] = True
                         break
         return data
-    
+
     @disable.autocomplete("target")
     async def disable_autocompletion_target(
-        interaction: discord.Interaction, current: str
+        interaction: discord.Interaction, current: str,
     ) -> typing.List[app_commands.Choice[str]]:
         data = []
         usedlist = {}
@@ -422,8 +419,8 @@ def run_discord_bot():
                 if possible_value not in usedlist:
                     data.append(
                         app_commands.Choice(
-                            name=possible_value, value=possible_value
-                        )
+                            name=possible_value, value=possible_value,
+                        ),
                     )
                     usedlist[possible_value] = True
             else:
@@ -431,7 +428,7 @@ def run_discord_bot():
                     if possible_value in v:
                         if v[0] not in usedlist:
                             data.append(
-                                app_commands.Choice(name=v[0], value=v[0])
+                                app_commands.Choice(name=v[0], value=v[0]),
                             )
                             usedlist[v[0]] = True
                         break
@@ -439,7 +436,7 @@ def run_discord_bot():
 
     @dehusk.autocomplete("target")
     async def dehusk_autocompletion_target(
-        interaction: discord.Interaction, current: str
+        interaction: discord.Interaction, current: str,
     ) -> typing.List[app_commands.Choice[str]]:
         data = []
         usedlist = {}
@@ -455,8 +452,8 @@ def run_discord_bot():
                 if possible_value not in usedlist:
                     data.append(
                         app_commands.Choice(
-                            name=possible_value, value=possible_value
-                        )
+                            name=possible_value, value=possible_value,
+                        ),
                     )
                     usedlist[possible_value] = True
             else:
@@ -464,7 +461,7 @@ def run_discord_bot():
                     if possible_value in v:
                         if v[0] not in usedlist:
                             data.append(
-                                app_commands.Choice(name=v[0], value=v[0])
+                                app_commands.Choice(name=v[0], value=v[0]),
                             )
                             usedlist[v[0]] = True
                         break
@@ -476,7 +473,7 @@ def run_discord_bot():
     @custom_kill.autocomplete("weapon2")
     @kill.autocomplete("weapon")
     async def kill_autocompletion_weapon(
-        interaction: discord.Interaction, current: str
+        interaction: discord.Interaction, current: str,
     ) -> typing.List[app_commands.Choice[str]]:
         data = []
         usedlist = []
@@ -488,8 +485,8 @@ def run_discord_bot():
                     if possible_value not in usedlist:
                         data.append(
                             app_commands.Choice(
-                                name=possible_value, value=possible_value
-                            )
+                                name=possible_value, value=possible_value,
+                            ),
                         )
                         usedlist.append(possible_value)
                 elif (
@@ -498,7 +495,7 @@ def run_discord_bot():
                     value = fuzz.fuzzy_match_weapon_name(possible_value)
                     if value not in usedlist:
                         data.append(
-                            app_commands.Choice(name=value, value=value)
+                            app_commands.Choice(name=value, value=value),
                         )
                         usedlist.append(value)
         return data
@@ -515,12 +512,12 @@ def run_discord_bot():
 
 # bot logic
 def handle_response_inner(
-    weapon, target, query=None, operation="kill", num1=0, weapon2=None
+    weapon, target, query=None, operation="kill", num1=0, weapon2=None,
 ):
     try:
         if operation == "kill":
             return calculator.general_kill_handler(
-                weapon, target
+                weapon, target,
             )  # return calculator.relic_th_kill_handler(weapon, target)
         if operation == "disable":
             return calculator.general_disable_handler(weapon, target)
@@ -530,7 +527,7 @@ def handle_response_inner(
             return calculator.general_bunker_kill_handler(weapon, target)
         if operation == "custom_kill":
             return calculator.custom_kill_handler(
-                weapon, num1, weapon2, target
+                weapon, num1, weapon2, target,
             )
     except ZeroDivisionError as e:
         message = str(e)
@@ -618,7 +615,7 @@ def handle_response(message_) -> str:
         weapon, target = token_pair[0][1], token_pair[0][3]
         if "size" in target:
             return handle_response_inner(
-                weapon, target, message_, operation="bunker"
+                weapon, target, message_, operation="bunker",
             )
         return handle_response_inner(weapon, target, message_)
 
@@ -626,7 +623,7 @@ def handle_response(message_) -> str:
     if len(token_pair) >= 1:
         weapon, target = token_pair[0][1], token_pair[0][2]
         return handle_response_inner(
-            utils.move_string_to_rear(weapon), utils.move_string_to_rear(target), message_, operation="disable"
+            utils.move_string_to_rear(weapon), utils.move_string_to_rear(target), message_, operation="disable",
         )
 
     token_pair = re.findall(
@@ -636,5 +633,5 @@ def handle_response(message_) -> str:
     if len(token_pair) >= 1:
         weapon, target = token_pair[0][1], token_pair[0][2]
         return handle_response_inner(
-            utils.move_string_to_rear(weapon), utils.move_string_to_rear(target), message_, operation="dehusk"
+            utils.move_string_to_rear(weapon), utils.move_string_to_rear(target), message_, operation="dehusk",
         )

@@ -7,7 +7,7 @@ def csv_to_json(csvFilePath, jsonFilePath):
     jsonArray = []
 
     # read csv file
-    with open(csvFilePath, encoding='utf-8') as csvf:
+    with open(csvFilePath, encoding="utf-8") as csvf:
         csvReader = csv.DictReader(csvf)
 
         # convert each csv row into python dict
@@ -16,15 +16,15 @@ def csv_to_json(csvFilePath, jsonFilePath):
             jsonArray.append(row)
 
     # convert python jsonArray to JSON String and write to file
-    with open(jsonFilePath, 'w', encoding='utf-8') as jsonf:
+    with open(jsonFilePath, "w", encoding="utf-8") as jsonf:
         jsonString = json.dumps(jsonArray, indent=4)
         jsonf.write(jsonString)
 
 
 def json_to_js(jsonFilePath, jsFilePath, object_name):
 
-    with open(jsonFilePath, encoding='utf-8') as jsonf:
-        with open(jsFilePath, 'w', encoding='utf-8') as jsf:
+    with open(jsonFilePath, encoding="utf-8") as jsonf:
+        with open(jsFilePath, "w", encoding="utf-8") as jsf:
             jsf.write(f"export const {object_name} = ")
             for row in jsonf.readlines():
                 final = ""

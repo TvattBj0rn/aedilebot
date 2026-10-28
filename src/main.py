@@ -1,22 +1,13 @@
 # import discord
-from discord.ext import commands
-import re
-import json
-import discord.app_commands
-import math
-import os
 import utils
-import parse
-import fuzzy as fuzz
 import bot
-import calculator
 
 utils.debugging = True
 
 # text processing functions
 def clean_capitalize(str):
     result = ""
-    list_of_words = str.split() 
+    list_of_words = str.split()
     for elem in list_of_words:
         if len(result) > 0:
             result = result + " " + elem.strip().capitalize()
@@ -33,14 +24,14 @@ async def message_handler(message_, user_message):
     if response:
         await message_.reply(response, mention_author = False)
 
-def list_guilds(client): 
+def list_guilds(client):
     print("Current discords: ")
     for guild in client.guilds:
         print(guild, end=" \n")
 
 # main bot funcion
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     # run
     #message = "how much 40mm to kill trench"
     #print(parse.slang_dict)
