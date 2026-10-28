@@ -9,7 +9,7 @@ select = [
     "B", # Flake8-bugbear
     "SIM", # Flake8-simplify
     "I", # Isort
-#    "C4", # Comprehensions
+    "C4", # Comprehensions
 #    "ANN", # Types annotation
     "COM", # Commas handling
     "Q", # Quoting

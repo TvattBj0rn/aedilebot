@@ -35,7 +35,7 @@ for file_name in weapon_names:
     csv_file, json_file = file_name + ".csv", file_name + ".json"
     dictionary_to_json(csv_to_dictionary(csv_file, file_name), json_file)
 
-targets = dict()
+targets = {}
 for file_name in target_names:
     csv_file, json_file = file_name + ".csv", file_name + ".json"
     targets = targets | csv_to_dictionary(csv_file, file_name)
