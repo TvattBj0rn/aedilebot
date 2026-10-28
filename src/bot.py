@@ -2,7 +2,6 @@ import datetime
 import os
 import re
 import traceback
-import typing
 
 import discord
 from discord import app_commands
@@ -322,7 +321,7 @@ def run_discord_bot():
     @statsheet.autocomplete("entity")
     async def statsheet_autocompletion(
         interaction: discord.Interaction, current: str,
-    ) -> typing.List[app_commands.Choice[str]]:
+    ) -> list[app_commands.Choice[str]]:
         data = []
         usedlist = []
         if len(current) > 1:
@@ -373,7 +372,7 @@ def run_discord_bot():
     @custom_kill.autocomplete("target")
     async def kill_autocompletion_target(
         interaction: discord.Interaction, current: str,
-    ) -> typing.List[app_commands.Choice[str]]:
+    ) -> list[app_commands.Choice[str]]:
         data = []
         usedlist = {}
         guess = fuzz.fuzzy_match_target_name_command(current)
@@ -406,7 +405,7 @@ def run_discord_bot():
     @disable.autocomplete("target")
     async def disable_autocompletion_target(
         interaction: discord.Interaction, current: str,
-    ) -> typing.List[app_commands.Choice[str]]:
+    ) -> list[app_commands.Choice[str]]:
         data = []
         usedlist = {}
         guess = fuzz.fuzzy_match_target_name_command(current, parse.vehicle_dictionary)
@@ -439,7 +438,7 @@ def run_discord_bot():
     @dehusk.autocomplete("target")
     async def dehusk_autocompletion_target(
         interaction: discord.Interaction, current: str,
-    ) -> typing.List[app_commands.Choice[str]]:
+    ) -> list[app_commands.Choice[str]]:
         data = []
         usedlist = {}
         guess = fuzz.fuzzy_match_target_name_command(current, parse.husk_dictionary)
@@ -476,7 +475,7 @@ def run_discord_bot():
     @kill.autocomplete("weapon")
     async def kill_autocompletion_weapon(
         interaction: discord.Interaction, current: str,
-    ) -> typing.List[app_commands.Choice[str]]:
+    ) -> list[app_commands.Choice[str]]:
         data = []
         usedlist = []
         if len(current) > 1:

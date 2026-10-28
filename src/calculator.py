@@ -158,7 +158,7 @@ class DamageCalculator:
                 mitigation_type = self.target["Mitigation Type"]
         mitigation_value = self.damage_type[mitigation_type]
         # Here later we can do entrenchment bonus or etc
-        real_damage = float(self.damage_value * float((1 - float(mitigation_value))))
+        real_damage = float(self.damage_value * float(1 - float(mitigation_value)))
         if self.dmg_multiplier is not None:
             real_damage *= self.dmg_multiplier
 
@@ -170,7 +170,7 @@ class DamageCalculator:
         if self.shelters > 0 and (self.damage_type["Name"] == "HighExplosive" or self.damage_type["Name"] == "IncendiaryHighExplosive"):
             mitigation_bonus = self.get_shelter_bonus(self.shelters)
             max_mitigation_value = float(self.damage_type[mitigation_type]) + mitigation_bonus
-            self.min_real_damage = math.ceil(float(self.damage_value * float((1 - max_mitigation_value))))
+            self.min_real_damage = math.ceil(float(self.damage_value * float(1 - max_mitigation_value)))
         return math.ceil(real_damage)
 
     def get_shelter_bonus(self, shelters):

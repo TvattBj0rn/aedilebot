@@ -31,7 +31,7 @@ def move_string_to_rear(string):
             if replacement_string in ["unemplaced","unentrenched"]:
                 return string.replace(replacement_string, "")
             if replacement_string in ["emplaced","entrenched"]:
-                return string.replace(replacement_string, "") + " " + str("emplaced")
+                return string.replace(replacement_string, "") + " " + "emplaced"
             if replacement_string in ["t1","t2","t3"]:
                 return string.replace(replacement_string, "") + " " + str(replacement_string)
     return string
