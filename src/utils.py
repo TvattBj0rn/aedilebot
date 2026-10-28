@@ -1,4 +1,4 @@
-
+import json
 import re
 from functools import lru_cache
 
@@ -51,3 +51,7 @@ def normalize(text: str) -> str:
 def singularize(word: str) -> str:
     result = inflector.singular_noun(word)
     return result if result else word
+
+def load_json_to_dict(filename):
+    with open(filename, encoding="utf-8") as f:
+        return json.load(f)

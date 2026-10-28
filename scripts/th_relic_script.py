@@ -1,10 +1,4 @@
-import json
-
-
-def load_json_to_dict(filename):
-    with open(filename) as f:
-        dict = json.load(f)
-        return dict
+from src.utils import load_json_to_dict
 
 th_relics_dict=load_json_to_dict("data\\th_relic_types.json")
 

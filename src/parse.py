@@ -1,15 +1,9 @@
 import csv
-import json
 import os
 from collections import defaultdict
 
 import utils
-
-
-def load_json_to_dict(filename):
-    with open(filename, encoding="utf-8") as f:
-        dict = json.load(f)
-        return dict
+from utils import load_json_to_dict
 
 
 def load_locations_from_csv(filename):
