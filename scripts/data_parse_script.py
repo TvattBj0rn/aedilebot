@@ -32,10 +32,10 @@ def json_to_js(jsonFilePath, jsFilePath, object_name):
                     splited = row.split(":")
                     without = splited[0]
                     if "(" in without:
-                        without = without.split("(")[0] + "\""
+                        without = without.split("(")[0] + '"'
                     without = without.replace(" ", "")
-                    if (without == "\"Name\""):
-                        jsf.write(f"\"ObjectType\":\"{object_name}\",\n")
+                    if (without == '"Name"'):
+                        jsf.write(f'"ObjectType":"{object_name}",\n')
                     final = ":".join([without] + splited[1:])
                 else:
                     final = row
