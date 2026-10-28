@@ -5,11 +5,11 @@ import traceback
 
 import discord
 from discord import app_commands
+from discord.ext import commands
 from dotenv import load_dotenv
 
 import calculator
 import fuzzy as fuzz
-import main
 import parse
 import utils
 
@@ -91,7 +91,7 @@ class BunkerSpecParseError(TargetNotFoundError):
 def run_discord_bot():
     intents = discord.Intents.default()
     intents.message_content = True
-    client = main.commands.Bot(
+    client = commands.Bot(
         command_prefix="!", intents=intents, proxy=HTTPS_PROXY,
     )
 
@@ -103,7 +103,7 @@ def run_discord_bot():
             print(f"Synced {len(synced)} commands:")
             for cmd in synced:
                 print(f"  - {cmd.name}")
-            main.list_guilds(client)
+            print(f"Current discords:\n{"\n".join(guild.name for guild in client.guilds)}")
         except Exception as e:
             print(f"Sync error: {e}")
 
@@ -506,7 +506,7 @@ def run_discord_bot():
         if message.author == client.user:
             return
         user_message = str(message.content)
-        await main.message_handler(message, user_message)
+        await message_handler(message, user_message)
 
     client.run(DEV_SERVER_TOKEN)
 
@@ -637,3 +637,8 @@ def handle_response(message_: str) -> str:
             utils.move_string_to_rear(weapon), utils.move_string_to_rear(target), message_, operation="dehusk",
         )
     return ""
+
+async def message_handler(message_, user_message):
+    response = handle_response(user_message)
+    if response:
+        await message_.reply(response, mention_author = False)

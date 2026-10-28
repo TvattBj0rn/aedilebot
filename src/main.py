@@ -1,4 +1,3 @@
-# import discord
 import bot
 import utils
 
@@ -17,19 +16,7 @@ def clean_capitalize(str):
         return str
     return result
 
-
-async def message_handler(message_, user_message):
-    response = bot.handle_response(user_message)
-    if response:
-        await message_.reply(response, mention_author = False)
-
-def list_guilds(client):
-    print("Current discords: ")
-    for guild in client.guilds:
-        print(guild, end=" \n")
-
-# main bot funcion
-
+# main bot function
 if __name__ == "__main__":
     # run
     #message = "how much 40mm to kill trench"
