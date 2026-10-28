@@ -14,11 +14,9 @@ select = [
     "COM", # Commas handling
     "Q", # Quoting
     "RET", # Return
-#    "ERA", # Commented code
-#    "TRY", # Tryceratops (Exception related)
     "RUF", # Ruff specific rules
     "N", # Pep-8 naming conventions
-#    "PERF", # Performances
+    "PERF", # Performances
 ]
 ignore = [
     "E501", # Line-too-long
@@ -26,10 +24,6 @@ ignore = [
 #    "ANN204", # Missing-return-type-special-method
 #    "ANN002", # Args typing
 #    "ANN003", # Kwargs typing
-#    "RUF001", # Unicode chars
-#    "TRY400", # Exception instead of error
-#    "RUF012", # Mutable-class-default
-#    "W191", # Indentation contains tabs
 ]
 
 [lint.flake8-quotes]
